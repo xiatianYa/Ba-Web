@@ -162,7 +162,9 @@ const local: App.I18n.Schema = {
     404: '页面不存在',
     500: '服务器错误',
     'iframe-page': '外链页面',
-    home: '首页'
+    home: '首页',
+    manage: '系统管理',
+    manage_user: '用户管理'
   },
   page: {
     login: {
@@ -178,7 +180,11 @@ const local: App.I18n.Schema = {
         back: '返回',
         validateSuccess: '验证成功',
         loginSuccess: '登录成功',
-        welcomeBack: '欢迎回来，{userName} ！'
+        welcomeBack: '欢迎回来，{userName} ！',
+        avatarPlaceholder: '请上传用户头像',
+        userNickNamePlaceholder: '请输入昵称',
+        getCodePlaceholder: '获取验证码',
+        registerSuccess: '注册成功'
       },
       pwdLogin: {
         title: '密码登录',
@@ -187,9 +193,7 @@ const local: App.I18n.Schema = {
         register: '注册账号',
         otherAccountLogin: '其他账号登录',
         otherLoginMode: '其他登录方式',
-        superAdmin: '超级管理员',
-        admin: '管理员',
-        user: '普通用户'
+        qq: 'QQ登录'
       },
       codeLogin: {
         title: '验证码登录',
@@ -239,6 +243,232 @@ const local: App.I18n.Schema = {
         desc5: 'Soybean 刚才把工作台页面随便写了一些，凑合能看了！'
       },
       creativity: '创意'
+    },
+    manage: {
+      common: {
+        status: {
+          enable: '启用',
+          disable: '禁用'
+        }
+      },
+      role: {
+        title: '角色列表',
+        roleName: '角色名称',
+        roleCode: '角色编码',
+        roleStatus: '角色状态',
+        roleDesc: '角色描述',
+        menuAuth: '菜单权限',
+        buttonAuth: '按钮权限',
+        form: {
+          roleName: '请输入角色名称',
+          roleCode: '请输入角色编码',
+          roleStatus: '请选择角色状态',
+          roleDesc: '请输入角色描述'
+        },
+        addRole: '新增角色',
+        editRole: '编辑角色'
+      },
+      user: {
+        title: '用户列表',
+        userName: '用户名',
+        userGender: '性别',
+        nickName: '昵称',
+        userPhone: '手机号',
+        userEmail: '邮箱',
+        userStatus: '用户状态',
+        userRole: '用户角色',
+        form: {
+          userName: '请输入用户名',
+          userGender: '请选择性别',
+          nickName: '请输入昵称',
+          userPhone: '请输入手机号',
+          userEmail: '请输入邮箱',
+          userStatus: '请选择用户状态',
+          userRole: '请选择用户角色'
+        },
+        addUser: '新增用户',
+        editUser: '编辑用户',
+        gender: {
+          unknown: '未知',
+          male: '男',
+          female: '女'
+        }
+      },
+      menu: {
+        home: '首页',
+        title: '菜单列表',
+        id: 'ID',
+        parentId: '父级菜单ID',
+        menuType: '菜单类型',
+        menuName: '菜单名称',
+        routeName: '路由名称',
+        routePath: '路由路径',
+        pathParam: '路径参数',
+        layout: '布局',
+        page: '页面组件',
+        i18nKey: '国际化key',
+        icon: '图标',
+        localIcon: '本地图标',
+        iconTypeTitle: '图标类型',
+        order: '排序',
+        constant: '常量路由',
+        keepAlive: '缓存路由',
+        href: '外链',
+        hideInMenu: '隐藏菜单',
+        activeMenu: '高亮的菜单',
+        multiTab: '支持多页签',
+        fixedIndexInTab: '固定在页签中的序号',
+        query: '路由参数',
+        button: '按钮',
+        buttonCode: '按钮编码',
+        buttonDesc: '按钮描述',
+        menuStatus: '菜单状态',
+        form: {
+          home: '请选择首页',
+          menuType: '请选择菜单类型',
+          menuName: '请输入菜单名称',
+          routeName: '请输入路由名称',
+          routePath: '请输入路由路径',
+          pathParam: '请输入路径参数',
+          page: '请选择页面组件',
+          layout: '请选择布局组件',
+          i18nKey: '请输入国际化key',
+          icon: '请输入图标',
+          localIcon: '请选择本地图标',
+          order: '请输入排序',
+          keepAlive: '请选择是否缓存路由',
+          href: '请输入外链',
+          hideInMenu: '请选择是否隐藏菜单',
+          activeMenu: '请选择高亮的菜单的路由名称',
+          multiTab: '请选择是否支持多标签',
+          fixedInTab: '请选择是否固定在页签中',
+          fixedIndexInTab: '请输入固定在页签中的序号',
+          queryKey: '请输入路由参数Key',
+          queryValue: '请输入路由参数Value',
+          button: '请选择是否按钮',
+          buttonCode: '请输入按钮编码',
+          buttonDesc: '请输入按钮描述',
+          menuStatus: '请选择菜单状态'
+        },
+        addMenu: '新增菜单',
+        editMenu: '编辑菜单',
+        addChildMenu: '新增子菜单',
+        type: {
+          directory: '目录',
+          menu: '菜单'
+        },
+        iconType: {
+          iconify: 'iconify图标',
+          local: '本地图标'
+        }
+      },
+      dict: {
+        title: '字典列表',
+        name: '字典名称',
+        code: '字典编码',
+        type: '字典类型',
+        description: '字典描述',
+        sort: '排序',
+        status: '字典状态',
+        form: {
+          name: '请输入字典名称',
+          code: '请输入字典编码',
+          type: '请选择字典类型',
+          description: '请输入字典描述',
+          sort: '请输入排序',
+          status: '请选择字典状态'
+        },
+        addDict: '新增字典',
+        editDict: '编辑字典',
+        dictType: {
+          system: '系统字典',
+          business: '业务字典'
+        },
+        loadCacheSuccess: '缓存成功',
+        selectTreeIsEmptyTip: '请选择字典查看子项目',
+        systemFieldsCannotBeDeleted: '系统字段禁止操作删除'
+      },
+      dictItem: {
+        title: '字典项列表',
+        dictCode: '字典编码',
+        value: '字典值',
+        zhCN: '中文',
+        enUS: '英文',
+        color: '#颜色',
+        sort: '排序',
+        type: '类型',
+        status: '状态',
+        description: '描述',
+        form: {
+          value: '请输入字典值',
+          zhCN: '请输入字典项中文',
+          enUS: '请输入字典项英文',
+          color: '请选择颜色',
+          type: '请选择类型',
+          sort: '请输入排序',
+          status: '请选择字典项状态',
+          description: '请输入字典描述'
+        },
+        addDictItem: '新增字典项',
+        editDictItem: '编辑字典项'
+      }
+    },
+    tools: {
+      common: {
+        renderType: {
+          input: '输入框',
+          select: '下拉框',
+          radio: '单选框'
+        },
+        searchType: {
+          equal: '等于',
+          noEqual: '不等于',
+          like: '模糊',
+          leftLike: '左模糊',
+          rightLike: '右模糊',
+          greaterThan: '大于',
+          greaterThanOrEqual: '大于等于',
+          lessThan: '小于',
+          lessThanOrEqual: '小于等于',
+          in: '包含',
+          notIn: '不包含',
+          between: '在区间内',
+          notBetween: '不在区间内'
+        }
+      }
+    },
+    userCenter: {
+      userInfo: {
+        edit: '编辑用户信息',
+        userName: '用户名',
+        userAvatar: '头像',
+        password: '密码',
+        nickName: '用户昵称',
+        phone: '手机号',
+        email: '邮箱',
+        gender: '性别',
+        communityPreference: '社区偏好',
+        modePreference: '模式偏好',
+        personalInfo: '个人信息',
+        changePassword: '修改密码',
+        gameConfig: '游戏配置',
+        basicInfo: '基本信息',
+        oldPassword: '旧密码',
+        newPassword: '新密码',
+        confirmPassword: '确认密码',
+        restartUserName: '重置用户信息',
+        restartUserNameConfirm: '你只有一次机会,重置后用户名作为你的登录账号,请确认是否继续',
+        form: {
+          userName: '请输入用户名',
+          userAvatar: '请上传头像',
+          password: '请输入密码',
+          communityPreferencePlaceholder: '请选择社区偏好',
+          modePreferencePlaceholder: '请选择模式偏好',
+          oldPasswordPlaceholder: '请输入旧密码',
+          newPasswordPlaceholder: '请输入新密码',
+          confirmPasswordPlaceholder: '请输入确认密码'
+        }
+      }
     }
   },
   form: {

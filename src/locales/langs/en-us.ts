@@ -162,7 +162,9 @@ const local: App.I18n.Schema = {
     404: 'Page Not Found',
     500: 'Server Error',
     'iframe-page': 'Iframe',
-    home: 'Home'
+    home: 'Home',
+    manage: 'Manage',
+    manage_user: 'Manage User'
   },
   page: {
     login: {
@@ -178,7 +180,11 @@ const local: App.I18n.Schema = {
         back: 'Back',
         validateSuccess: 'Verification passed',
         loginSuccess: 'Login successfully',
-        welcomeBack: 'Welcome back, {userName} !'
+        welcomeBack: 'Welcome back, {userName} !',
+        avatarPlaceholder: 'Please enter avatar',
+        userNickNamePlaceholder: 'Please enter user nick name',
+        getCodePlaceholder: 'Please enter get code',
+        registerSuccess: 'Register successfully'
       },
       pwdLogin: {
         title: 'Password Login',
@@ -187,9 +193,7 @@ const local: App.I18n.Schema = {
         register: 'Register',
         otherAccountLogin: 'Other Account Login',
         otherLoginMode: 'Other Login Mode',
-        superAdmin: 'Super Admin',
-        admin: 'Admin',
-        user: 'User'
+        qq: 'QQ Login'
       },
       codeLogin: {
         title: 'Verification Code Login',
@@ -239,6 +243,232 @@ const local: App.I18n.Schema = {
         desc5: 'Soybean just wrote some of the workbench pages casually, and it was enough to see!'
       },
       creativity: 'Creativity'
+    },
+    manage: {
+      common: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable'
+        }
+      },
+      role: {
+        title: 'Role List',
+        roleName: 'Role Name',
+        roleCode: 'Role Code',
+        roleStatus: 'Role Status',
+        roleDesc: 'Role Description',
+        form: {
+          roleName: 'Please enter role name',
+          roleCode: 'Please enter role code',
+          roleStatus: 'Please select role status',
+          roleDesc: 'Please enter role description'
+        },
+        addRole: 'Add Role',
+        editRole: 'Edit Role',
+        menuAuth: 'Menu Auth',
+        buttonAuth: 'Button Auth'
+      },
+      user: {
+        title: 'User List',
+        userName: 'User Name',
+        userGender: 'User Gender',
+        nickName: 'Nick Name',
+        userPhone: 'User Phone',
+        userEmail: 'User Email',
+        userStatus: 'User Status',
+        userRole: 'User Role',
+        form: {
+          userName: 'Please enter user name',
+          userGender: 'Please select user gender',
+          nickName: 'Please enter nick name',
+          userPhone: 'Please enter user phone',
+          userEmail: 'Please enter user email',
+          userStatus: 'Please select user status',
+          userRole: 'Please select user role'
+        },
+        addUser: 'Add User',
+        editUser: 'Edit User',
+        gender: {
+          unknown: 'Unknown',
+          male: 'Male',
+          female: 'Female'
+        }
+      },
+      menu: {
+        home: 'Home',
+        title: 'Menu List',
+        id: 'Menu ID',
+        parentId: 'Parent ID',
+        menuType: 'Menu Type',
+        menuName: 'Menu Name',
+        routeName: 'Route Name',
+        routePath: 'Route Path',
+        pathParam: 'Path Param',
+        layout: 'Layout',
+        page: 'Page',
+        i18nKey: 'I18n Key',
+        icon: 'Icon',
+        localIcon: 'Local Icon',
+        iconTypeTitle: 'Icon Type',
+        order: 'Order',
+        constant: 'Constant',
+        keepAlive: 'Keep Alive',
+        href: 'Href',
+        hideInMenu: 'Hide In Menu',
+        activeMenu: 'Active Menu',
+        multiTab: 'Multi Tab',
+        fixedIndexInTab: 'Fixed Index In Tab',
+        query: 'Query',
+        button: 'Button',
+        buttonCode: 'Button Code',
+        buttonDesc: 'Button Description',
+        menuStatus: 'Menu Status',
+        form: {
+          home: 'Please select home',
+          menuType: 'Please select menu type',
+          menuName: 'Please enter menu name',
+          routeName: 'Please enter route name',
+          routePath: 'Please enter route path',
+          pathParam: 'Please enter path param',
+          layout: 'Please select layout',
+          page: 'Please select page',
+          i18nKey: 'Please enter i18n key',
+          icon: 'Please enter icon',
+          localIcon: 'Please enter local icon',
+          order: 'Please enter order',
+          keepAlive: 'Please select keep alive',
+          href: 'Please enter href',
+          hideInMenu: 'Please select hide in menu',
+          activeMenu: 'Please select active menu',
+          multiTab: 'Please select multi tab',
+          fixedInTab: 'Please select fixed in tab',
+          fixedIndexInTab: 'Please enter fixed index in tab',
+          queryKey: 'Please enter query key',
+          queryValue: 'Please enter query value',
+          button: 'Please select button',
+          buttonCode: 'Please enter button code',
+          buttonDesc: 'Please enter button description',
+          menuStatus: 'Please select menu status'
+        },
+        addMenu: 'Add Menu',
+        editMenu: 'Edit Menu',
+        addChildMenu: 'Add Child Menu',
+        type: {
+          directory: 'Directory',
+          menu: 'Menu'
+        },
+        iconType: {
+          iconify: 'Iconify',
+          local: 'Local'
+        }
+      },
+      dict: {
+        title: 'Dict List',
+        name: 'Dict Name',
+        code: 'Dict Code',
+        type: 'Dict Type',
+        sort: 'Sort',
+        description: 'Description',
+        status: 'Status',
+        form: {
+          name: 'Please enter name',
+          code: 'Please enter code',
+          type: 'Please select type',
+          sort: 'Please enter sort',
+          description: 'Please enter description',
+          status: 'Please select status'
+        },
+        addDict: 'Add Dict',
+        editDict: 'Edit Dict',
+        dictType: {
+          system: 'System',
+          business: 'Business'
+        },
+        loadCacheSuccess: 'Load cache successfully',
+        selectTreeIsEmptyTip: 'The select tree is empty',
+        systemFieldsCannotBeDeleted: 'System fields cannot be deleted'
+      },
+      dictItem: {
+        title: 'Dict Item List',
+        dictCode: 'Dict Code',
+        value: 'Value',
+        zhCN: 'Chinese',
+        enUS: 'English',
+        sort: 'Sort',
+        type: 'Type',
+        color: 'Color',
+        description: 'Description',
+        status: 'Status',
+        form: {
+          value: 'Please enter value',
+          zhCN: 'Please enter Chinese',
+          enUS: 'Please enter English',
+          sort: 'Please enter sort',
+          type: 'Please select type',
+          color: 'Please enter color',
+          description: 'Please enter description',
+          status: 'Please select status'
+        },
+        addDictItem: 'Add Dict Item',
+        editDictItem: 'Edit Dict Item'
+      }
+    },
+    tools: {
+      common: {
+        renderType: {
+          input: 'Input',
+          select: 'Select',
+          radio: 'Radio'
+        },
+        searchType: {
+          equal: 'Equal',
+          noEqual: 'Not equal',
+          like: 'Like',
+          leftLike: 'Left like',
+          rightLike: 'Right like',
+          greaterThan: 'Greater than',
+          greaterThanOrEqual: 'Greater than or equal to',
+          lessThan: 'Less than',
+          lessThanOrEqual: 'Less than or equal to',
+          in: 'In',
+          notIn: 'Not in',
+          between: 'Between',
+          notBetween: 'Not between'
+        }
+      }
+    },
+    userCenter: {
+      userInfo: {
+        userName: 'User Name',
+        userAvatar: 'User Avatar',
+        password: 'Password',
+        nickName: 'Nick Name',
+        phone: 'Phone',
+        email: 'Email',
+        gender: 'Gender',
+        communityPreference: 'Community Preference',
+        modePreference: 'Mode Preference',
+        personalInfo: 'Personal Info',
+        changePassword: 'Change Password',
+        gameConfig: 'Game Config',
+        basicInfo: 'Basic Info',
+        edit: 'Edit',
+        oldPassword: 'Old Password',
+        newPassword: 'New Password',
+        confirmPassword: 'Confirm Password',
+        restartUserName: 'Restart User Name',
+        restartUserNameConfirm: 'Restart User Name Confirm',
+        form: {
+          userName: 'Please enter user name',
+          userAvatar: 'Please enter user avatar',
+          password: 'Please enter password',
+          communityPreferencePlaceholder: 'Please select community preference',
+          modePreferencePlaceholder: 'Please select mode preference',
+          oldPasswordPlaceholder: 'Please enter old password',
+          newPasswordPlaceholder: 'Please enter new password',
+          confirmPasswordPlaceholder: 'Please enter confirm password'
+        }
+      }
     }
   },
   form: {

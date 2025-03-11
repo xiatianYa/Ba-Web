@@ -412,8 +412,11 @@ declare namespace App {
           common: {
             loginOrRegister: string;
             userNamePlaceholder: string;
+            avatarPlaceholder: string;
+            userNickNamePlaceholder: string;
             phonePlaceholder: string;
             codePlaceholder: string;
+            getCodePlaceholder: string;
             passwordPlaceholder: string;
             confirmPasswordPlaceholder: string;
             codeLogin: string;
@@ -422,6 +425,7 @@ declare namespace App {
             validateSuccess: string;
             loginSuccess: string;
             welcomeBack: string;
+            registerSuccess: string;
           };
           pwdLogin: {
             title: string;
@@ -430,9 +434,7 @@ declare namespace App {
             register: string;
             otherAccountLogin: string;
             otherLoginMode: string;
-            superAdmin: string;
-            admin: string;
-            user: string;
+            qq: string;
           };
           codeLogin: {
             title: string;
@@ -456,7 +458,6 @@ declare namespace App {
         };
         home: {
           branchDesc: string;
-          greeting: string;
           weatherDesc: string;
           projectCount: string;
           todo: string;
@@ -471,6 +472,7 @@ declare namespace App {
           visitCount: string;
           turnover: string;
           dealCount: string;
+          greeting: string;
           projectNews: {
             title: string;
             moreNews: string;
@@ -481,6 +483,232 @@ declare namespace App {
             desc5: string;
           };
           creativity: string;
+        };
+        manage: {
+          common: {
+            status: {
+              enable: string;
+              disable: string;
+            };
+          };
+          role: {
+            title: string;
+            roleName: string;
+            roleCode: string;
+            roleStatus: string;
+            roleDesc: string;
+            form: {
+              roleName: string;
+              roleCode: string;
+              roleStatus: string;
+              roleDesc: string;
+            };
+            addRole: string;
+            editRole: string;
+            menuAuth: string;
+            buttonAuth: string;
+          };
+          user: {
+            title: string;
+            userName: string;
+            userGender: string;
+            nickName: string;
+            userPhone: string;
+            userEmail: string;
+            userStatus: string;
+            userRole: string;
+            form: {
+              userName: string;
+              userGender: string;
+              nickName: string;
+              userPhone: string;
+              userEmail: string;
+              userStatus: string;
+              userRole: string;
+            };
+            addUser: string;
+            editUser: string;
+            gender: {
+              unknown: string;
+              male: string;
+              female: string;
+            };
+          };
+          menu: {
+            home: string;
+            title: string;
+            id: string;
+            parentId: string;
+            menuType: string;
+            menuName: string;
+            routeName: string;
+            routePath: string;
+            pathParam: string;
+            layout: string;
+            page: string;
+            i18nKey: string;
+            icon: string;
+            localIcon: string;
+            iconTypeTitle: string;
+            order: string;
+            constant: string;
+            keepAlive: string;
+            href: string;
+            hideInMenu: string;
+            activeMenu: string;
+            multiTab: string;
+            fixedIndexInTab: string;
+            query: string;
+            button: string;
+            buttonCode: string;
+            buttonDesc: string;
+            menuStatus: string;
+            form: {
+              home: string;
+              menuType: string;
+              menuName: string;
+              routeName: string;
+              routePath: string;
+              pathParam: string;
+              layout: string;
+              page: string;
+              i18nKey: string;
+              icon: string;
+              localIcon: string;
+              order: string;
+              keepAlive: string;
+              href: string;
+              hideInMenu: string;
+              activeMenu: string;
+              multiTab: string;
+              fixedInTab: string;
+              fixedIndexInTab: string;
+              queryKey: string;
+              queryValue: string;
+              button: string;
+              buttonCode: string;
+              buttonDesc: string;
+              menuStatus: string;
+            };
+            addMenu: string;
+            editMenu: string;
+            addChildMenu: string;
+            type: {
+              directory: string;
+              menu: string;
+            };
+            iconType: {
+              iconify: string;
+              local: string;
+            };
+          };
+          dict: {
+            title: string;
+            name: string;
+            code: string;
+            type: string;
+            sort: string;
+            description: string;
+            status: string;
+            form: {
+              name: string;
+              code: string;
+              type: string;
+              sort: string;
+              description: string;
+              status: string;
+            };
+            addDict: string;
+            editDict: string;
+            dictType: {
+              system: string;
+              business: string;
+            };
+            loadCacheSuccess: string;
+            selectTreeIsEmptyTip: string;
+            systemFieldsCannotBeDeleted: string;
+          };
+          dictItem: {
+            title: string;
+            dictCode: string;
+            value: string;
+            zhCN: string;
+            enUS: string;
+            sort: string;
+            type: string;
+            color: string;
+            description: string;
+            status: string;
+            form: {
+              value: string;
+              zhCN: string;
+              enUS: string;
+              sort: string;
+              type: string;
+              color: string;
+              description: string;
+              status: string;
+            };
+            addDictItem: string;
+            editDictItem: string;
+          };
+        };
+        tools: {
+          common: {
+            renderType: {
+              input: string;
+              select: string;
+              radio: string;
+            };
+            searchType: {
+              equal: string;
+              noEqual: string;
+              like: string;
+              leftLike: string;
+              rightLike: string;
+              greaterThan: string;
+              greaterThanOrEqual: string;
+              lessThan: string;
+              lessThanOrEqual: string;
+              in: string;
+              notIn: string;
+              between: string;
+              notBetween: string;
+            };
+          };
+        };
+        userCenter: {
+          userInfo: {
+            userName: string;
+            userAvatar: string;
+            password: string;
+            nickName: string;
+            phone: string;
+            email: string;
+            gender: string;
+            communityPreference: string;
+            modePreference: string;
+            personalInfo: string;
+            changePassword: string;
+            gameConfig: string;
+            basicInfo: string;
+            edit: string;
+            oldPassword: string;
+            newPassword: string;
+            confirmPassword: string;
+            restartUserName: string;
+            restartUserNameConfirm: string;
+            form: {
+              userName: string;
+              userAvatar: string;
+              password: string;
+              communityPreferencePlaceholder: string;
+              modePreferencePlaceholder: string;
+              oldPasswordPlaceholder: string;
+              newPasswordPlaceholder: string;
+              confirmPasswordPlaceholder: string;
+            };
+          };
         };
       };
       form: {
