@@ -41,7 +41,7 @@ const title = computed(() => {
 
 type Model = Pick<
   Api.UserManage.User,
-  'userName' | 'userGender' | 'nickName' | 'userPhone' | 'userEmail' | 'userRoles' | 'status'
+  'userName' | 'password' | 'userGender' | 'nickName' | 'userPhone' | 'userEmail' | 'userRoles' | 'status'
 >;
 
 const model: Model = reactive(createDefaultModel());
@@ -49,6 +49,7 @@ const model: Model = reactive(createDefaultModel());
 function createDefaultModel(): Model {
   return {
     userName: '',
+    password: '',
     userGender: null,
     nickName: '',
     userPhone: '',
@@ -58,10 +59,14 @@ function createDefaultModel(): Model {
   };
 }
 
-type RuleKey = Extract<keyof Model, 'userName' | 'status'>;
+type RuleKey = Extract<keyof Model, 'userName' | 'password' | 'userGender' | 'nickName' | 'userRoles' | 'status'>;
 
 const rules: Record<RuleKey, App.Global.FormRule> = {
   userName: defaultRequiredRule,
+  password: defaultRequiredRule,
+  userGender: defaultRequiredRule,
+  nickName: defaultRequiredRule,
+  userRoles: defaultRequiredRule,
   status: defaultRequiredRule
 };
 
@@ -96,11 +101,15 @@ async function handleSubmit() {
   await validate();
   // request
   if (props.operateType === 'edit') {
-    const result = await fetchUpdateUser(model);
-    if (result) window.$message?.success($t('common.updateSuccess'));
+    const { error }: any = await fetchUpdateUser(model);
+    if (!error) {
+      window.$message?.success($t('common.updateSuccess'));
+    }
   } else {
-    const result = await fetchInsertUser(model);
-    if (result) window.$message?.success($t('common.addSuccess'));
+    const { error }: any = await fetchInsertUser(model);
+    if (!error) {
+      window.$message?.success($t('common.addSuccess'));
+    }
   }
   closeDrawer();
   emit('submitted');
@@ -122,32 +131,35 @@ watch(visible, () => {
         <NFormItem :label="$t('page.manage.user.userName')" path="userName">
           <NInput v-model:value="model.userName" :placeholder="$t('page.manage.user.form.userName')" />
         </NFormItem>
-        <NFormItem :label="$t('page.manage.user.userGender')" path="userGender">
-          <NRadioGroup v-model:value="model.userGender">
-            <NRadio v-for="item in userGenderOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
-          </NRadioGroup>
-        </NFormItem>
         <NFormItem :label="$t('page.manage.user.nickName')" path="nickName">
           <NInput v-model:value="model.nickName" :placeholder="$t('page.manage.user.form.nickName')" />
         </NFormItem>
-        <NFormItem :label="$t('page.manage.user.userPhone')" path="userPhone">
-          <NInput v-model:value="model.userPhone" :placeholder="$t('page.manage.user.form.userPhone')" />
+        <NFormItem v-if="operateType === 'add'" :label="$t('page.manage.user.password')" path="password">
+          <NInput v-model:value="model.password" :placeholder="$t('page.manage.user.form.password')" />
         </NFormItem>
-        <NFormItem :label="$t('page.manage.user.userEmail')" path="email">
-          <NInput v-model:value="model.userEmail" :placeholder="$t('page.manage.user.form.userEmail')" />
-        </NFormItem>
-        <NFormItem :label="$t('page.manage.user.userStatus')" path="status">
-          <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
-          </NRadioGroup>
-        </NFormItem>
-        <NFormItem :label="$t('page.manage.user.userRole')" path="roles">
+        <NFormItem :label="$t('page.manage.user.userRole')" path="userRoles">
           <NSelect
             v-model:value="model.userRoles"
             multiple
             :options="roleOptions"
             :placeholder="$t('page.manage.user.form.userRole')"
           />
+        </NFormItem>
+        <NFormItem :label="$t('page.manage.user.userGender')" path="userGender">
+          <NRadioGroup v-model:value="model.userGender">
+            <NRadio v-for="item in userGenderOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+          </NRadioGroup>
+        </NFormItem>
+        <NFormItem :label="$t('page.manage.user.userStatus')" path="status">
+          <NRadioGroup v-model:value="model.status">
+            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+          </NRadioGroup>
+        </NFormItem>
+        <NFormItem :label="$t('page.manage.user.userPhone')" path="userPhone">
+          <NInput v-model:value="model.userPhone" :placeholder="$t('page.manage.user.form.userPhone')" />
+        </NFormItem>
+        <NFormItem :label="$t('page.manage.user.userEmail')" path="email">
+          <NInput v-model:value="model.userEmail" :placeholder="$t('page.manage.user.form.userEmail')" />
         </NFormItem>
       </NForm>
       <template #footer>

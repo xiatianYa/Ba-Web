@@ -76,14 +76,11 @@ declare namespace Api {
       status: Common.EnableStatus;
     }>;
 
-    /** role */
-    type Role = Common.CommonRecord<{
-      /** role name */
-      roleName: string;
-      /** role code */
-      roleCode: string;
-      /** role description */
-      roleDesc: string;
-    }>;
+    type MenuTree = {
+      id: number;
+      label: string;
+      pId: number;
+      children?: MenuTree[];
+    };
   }
 }

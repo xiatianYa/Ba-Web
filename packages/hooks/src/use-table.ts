@@ -14,7 +14,9 @@ export type TableColumnCheck = {
   checked: boolean;
 };
 
-export type TableDataWithIndex<T> = T & { index: number };
+export type TableDataWithIndex<T> = T & {
+  status: any; index: number
+};
 
 export type TransformedData<T> = {
   data: TableDataWithIndex<T>[];

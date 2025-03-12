@@ -164,7 +164,8 @@ const local: App.I18n.Schema = {
     'iframe-page': '外链页面',
     home: '首页',
     manage: '系统管理',
-    manage_user: '用户管理'
+    manage_user: '用户管理',
+    manage_role: '角色管理'
   },
   page: {
     login: {
@@ -271,6 +272,7 @@ const local: App.I18n.Schema = {
       user: {
         title: '用户列表',
         userName: '用户名',
+        password: '密码',
         userGender: '性别',
         nickName: '昵称',
         userPhone: '手机号',
@@ -279,6 +281,7 @@ const local: App.I18n.Schema = {
         userRole: '用户角色',
         form: {
           userName: '请输入用户名',
+          password: '请输入密码',
           userGender: '请选择性别',
           nickName: '请输入昵称',
           userPhone: '请输入手机号',

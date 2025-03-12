@@ -1,13 +1,13 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { fetchDeleteUserById, fetchDeleteUserByIds, fetchGetUserList } from '@/service/api';
-import { $t } from '@/locales';
+import { fetchDeleteRoleById, fetchDeleteRoleByIds, fetchGetRoleList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
-import { enableStatusRecord, userGenderRecord } from '@/constants/business';
 import { useTable, useTableOperate } from '@/hooks/common/table';
+import { $t } from '@/locales';
+import { enableStatusRecord } from '@/constants/business';
 import { useAuth } from '@/hooks/business/auth';
-import UserOperateDrawer from './modules/user-operate-drawer.vue';
-import UserSearch from './modules/user-search.vue';
+import RoleOperateDrawer from './modules/role-operate-drawer.vue';
+import RoleSearch from './modules/role-search.vue';
 
 const appStore = useAppStore();
 
@@ -16,25 +16,21 @@ const { hasAuth } = useAuth();
 const {
   columns,
   data,
+  loading,
   columnChecks,
   getData,
   getDataByPage,
-  loading,
   mobilePagination,
   searchParams,
   resetSearchParams
 } = useTable({
-  apiFn: fetchGetUserList,
-  showTotal: true,
+  apiFn: fetchGetRoleList,
   apiParams: {
     current: 1,
     size: 10,
     status: null,
-    userName: null,
-    userGender: null,
-    nickName: null,
-    userPhone: null,
-    userEmail: null
+    roleName: null,
+    roleCode: null
   },
   columns: () => [
     {
@@ -45,57 +41,29 @@ const {
     {
       key: 'index',
       title: $t('common.index'),
-      align: 'center',
-      width: 64
+      width: 64,
+      align: 'center'
     },
     {
-      key: 'userName',
-      title: $t('page.manage.user.userName'),
+      key: 'roleName',
+      title: $t('page.manage.role.roleName'),
       align: 'center',
-      minWidth: 100
+      minWidth: 120
     },
     {
-      key: 'userGender',
-      title: $t('page.manage.user.userGender'),
+      key: 'roleCode',
+      title: $t('page.manage.role.roleCode'),
       align: 'center',
-      width: 100,
-      render: row => {
-        if (row.userGender === null) {
-          return null;
-        }
-
-        const tagMap: Record<Api.UserManage.UserGender, NaiveUI.ThemeColor> = {
-          0: 'default',
-          1: 'primary',
-          2: 'error'
-        };
-
-        const label = $t(userGenderRecord[row.userGender]);
-
-        return <NTag type={tagMap[row.userGender]}>{label}</NTag>;
-      }
+      minWidth: 120
     },
     {
-      key: 'nickName',
-      title: $t('page.manage.user.nickName'),
-      align: 'center',
-      minWidth: 100
-    },
-    {
-      key: 'userPhone',
-      title: $t('page.manage.user.userPhone'),
-      align: 'center',
-      width: 120
-    },
-    {
-      key: 'userEmail',
-      title: $t('page.manage.user.userEmail'),
-      align: 'center',
-      minWidth: 200
+      key: 'roleDesc',
+      title: $t('page.manage.role.roleDesc'),
+      minWidth: 120
     },
     {
       key: 'status',
-      title: $t('page.manage.user.userStatus'),
+      title: $t('page.manage.role.roleStatus'),
       align: 'center',
       width: 100,
       render: row => {
@@ -105,7 +73,7 @@ const {
 
         const tagMap: Record<Api.Common.EnableStatus, NaiveUI.ThemeColor> = {
           1: 'success',
-          2: 'error'
+          2: 'warning'
         };
 
         const label = $t(enableStatusRecord[row.status as Api.Common.EnableStatus]);
@@ -120,12 +88,12 @@ const {
       width: 130,
       render: row => (
         <div class="flex-center gap-8px">
-          {hasAuth('/sysUser/update') && (
+          {hasAuth('sys:role:update') && (
             <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
               {$t('common.edit')}
             </NButton>
           )}
-          {hasAuth('/sysUser/remove') && (
+          {hasAuth('sys:role:delete') && (
             <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
               {{
                 default: () => $t('common.confirmDelete'),
@@ -143,31 +111,18 @@ const {
   ]
 });
 
-const {
-  drawerVisible,
-  operateType,
-  editingData,
-  handleAdd,
-  handleEdit,
-  checkedRowKeys,
-  onBatchDeleted,
-  onDeleted
-  // closeDrawer
-} = useTableOperate(data, getData);
+const { drawerVisible, operateType, editingData, handleAdd, handleEdit, checkedRowKeys, onBatchDeleted, onDeleted } =
+  useTableOperate(data, getData);
 
 async function handleBatchDelete() {
   // request
-  const { error }: any = await fetchDeleteUserByIds({
-    ids: checkedRowKeys.value
-  });
-  if (error) return;
+  await fetchDeleteRoleByIds(checkedRowKeys.value);
   onBatchDeleted();
 }
 
 async function handleDelete(id: number) {
   // request
-  const { error }: any = await fetchDeleteUserById(id);
-  if (error) return;
+  await fetchDeleteRoleById(id);
   onDeleted();
 }
 
@@ -178,20 +133,20 @@ function edit(id: number) {
 
 <template>
   <div class="min-h-500px flex-col-stretch gap-16px overflow-hidden lt-sm:overflow-auto">
-    <UserSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
+    <RoleSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
     <NCard
-      :title="$t('page.manage.user.title')"
+      :title="$t('page.manage.role.title')"
       :bordered="false"
       class="sm:flex-1-hidden card-wrapper"
       content-class="flex-col"
     >
       <TableHeaderOperation
         v-model:columns="columnChecks"
-        :delete-all="true"
-        delete-all-auth="sys:user:delete"
-        :checked-row-keys="checkedRowKeys"
+        v-model:checked-row-keys="checkedRowKeys"
+        add-auth="sys:role:save"
+        delete-auth="sys:role:delete"
+        :disabled-delete="checkedRowKeys.length === 0"
         :loading="loading"
-        add-auth="sys:user:save"
         @add="handleAdd"
         @delete="handleBatchDelete"
         @refresh="getData"
@@ -202,14 +157,14 @@ function edit(id: number) {
         :data="data"
         size="small"
         :flex-height="!appStore.isMobile"
-        :scroll-x="962"
+        :scroll-x="702"
         :loading="loading"
         remote
         :row-key="row => row.id"
         :pagination="mobilePagination"
         class="sm:h-full"
       />
-      <UserOperateDrawer
+      <RoleOperateDrawer
         v-model:visible="drawerVisible"
         :operate-type="operateType"
         :row-data="editingData"

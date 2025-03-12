@@ -164,7 +164,8 @@ const local: App.I18n.Schema = {
     'iframe-page': 'Iframe',
     home: 'Home',
     manage: 'Manage',
-    manage_user: 'Manage User'
+    manage_user: 'Manage User',
+    manage_role: 'Manage Role'
   },
   page: {
     login: {
@@ -271,6 +272,7 @@ const local: App.I18n.Schema = {
       user: {
         title: 'User List',
         userName: 'User Name',
+        password: 'Password',
         userGender: 'User Gender',
         nickName: 'Nick Name',
         userPhone: 'User Phone',
@@ -279,6 +281,7 @@ const local: App.I18n.Schema = {
         userRole: 'User Role',
         form: {
           userName: 'Please enter user name',
+          password: 'Please enter password',
           userGender: 'Please select user gender',
           nickName: 'Please enter nick name',
           userPhone: 'Please enter user phone',

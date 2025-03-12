@@ -19,7 +19,7 @@ export function fetchUpdateRole(params: any) {
 }
 
 /** Delete */
-export function fetchDeleteRoleById(id: string) {
+export function fetchDeleteRoleById(id: number) {
   return request({
     url: `/sysRole/remove/${id}`,
     method: 'delete'
@@ -53,8 +53,8 @@ export function fetchUpdateRoleMenu(params: any) {
 }
 
 /** get role list */
-export function fetchGetRoleList(params?: Api.SystemManage.RoleSearchParams) {
-  return request<Api.SystemManage.RoleList>({
+export function fetchGetRoleList(params?: Api.RoleManage.RoleSearchParams) {
+  return request<Api.RoleManage.RoleList>({
     url: '/sysRole/page',
     method: 'get',
     params
@@ -67,7 +67,7 @@ export function fetchGetRoleList(params?: Api.SystemManage.RoleSearchParams) {
  * these roles are all enabled
  */
 export function fetchGetAllRoles() {
-  return request<Api.SystemManage.AllRole[]>({
+  return request<Api.RoleManage.AllRole[]>({
     url: '/sysRole/getAllRoles',
     method: 'get'
   });

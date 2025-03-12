@@ -4,6 +4,8 @@ declare namespace Api {
     type User = Common.CommonRecord<{
       /** user name */
       userName: string;
+      /** user password */
+      password: string;
       /** user gender */
       userGender: UserGender | null;
       /** user nick name */
@@ -14,6 +16,8 @@ declare namespace Api {
       userEmail: string;
       /** user role code collection */
       userRoles: string[];
+      /** user status */
+      status: Api.Common.EnableStatus;
     }>;
 
     /** userVo */
