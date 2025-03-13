@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue';
 import { $t } from '@/locales';
-import { fetchGetAllPages, fetchGetMenuTree, fetchGetRoleByRoleId, fetchUpdateRoleMenu } from '@/service/api';
+import { fetchGetMenuIdsByRoleId, fetchGetMenuTree, fetchGetMenus, fetchUpdateRoleMenu } from '@/service/api';
 
 defineOptions({
   name: 'MenuAuthModal'
@@ -32,14 +32,13 @@ async function getHome() {
 
 async function updateHome(val: string) {
   // request
-
   home.value = val;
 }
 
 const pages = shallowRef<string[]>([]);
 
 async function getPages() {
-  const { error, data } = await fetchGetAllPages();
+  const { error, data } = await fetchGetMenus();
 
   if (!error) {
     pages.value = data;
@@ -70,8 +69,10 @@ const checks = shallowRef<number[]>([]);
 async function getChecks() {
   // request
   checks.value = [];
-  const result = await fetchGetRoleByRoleId(props.roleId);
-  checks.value = result.data;
+  const { error, data } = await fetchGetMenuIdsByRoleId(props.roleId);
+  if (!error) {
+    checks.value = data;
+  }
 }
 
 async function handleSubmit() {

@@ -88,12 +88,12 @@ const {
       width: 130,
       render: row => (
         <div class="flex-center gap-8px">
-          {hasAuth('sys:role:update') && (
+          {hasAuth('/sysRole/update') && (
             <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
               {$t('common.edit')}
             </NButton>
           )}
-          {hasAuth('sys:role:delete') && (
+          {hasAuth('/sysRole/remove') && (
             <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
               {{
                 default: () => $t('common.confirmDelete'),
@@ -116,13 +116,17 @@ const { drawerVisible, operateType, editingData, handleAdd, handleEdit, checkedR
 
 async function handleBatchDelete() {
   // request
-  await fetchDeleteRoleByIds(checkedRowKeys.value);
+  const { error } = await fetchDeleteRoleByIds({
+    ids: checkedRowKeys.value
+  });
+  if (error) return;
   onBatchDeleted();
 }
 
 async function handleDelete(id: number) {
   // request
-  await fetchDeleteRoleById(id);
+  const { error } = await fetchDeleteRoleById(id);
+  if (error) return;
   onDeleted();
 }
 

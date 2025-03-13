@@ -86,6 +86,7 @@ declare module 'vue' {
     NTag: typeof import('naive-ui')['NTag']
     NThing: typeof import('naive-ui')['NThing']
     NTooltip: typeof import('naive-ui')['NTooltip']
+    NTransfer: typeof import('naive-ui')['NTransfer']
     NTree: typeof import('naive-ui')['NTree']
     NWatermark: typeof import('naive-ui')['NWatermark']
     PinToggler: typeof import('./../components/common/pin-toggler.vue')['default']

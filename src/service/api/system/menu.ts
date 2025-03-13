@@ -37,24 +37,32 @@ export function fetchDeleteMenuByIds(params: any) {
 
 /** get menu list */
 export function fetchGetMenuList() {
-  return request<Api.SystemManage.MenuList>({
+  return request<Api.MenuManage.MenuList>({
     url: '/sysMenu/page',
     method: 'get'
   });
 }
 
-/** get all pages */
-export function fetchGetAllPages() {
+/** get all menus */
+export function fetchGetMenus() {
   return request<string[]>({
-    url: '/sysMenu/getAllPages',
+    url: '/sysMenu/getAllMenus',
     method: 'get'
   });
 }
 
 /** get menu tree */
 export function fetchGetMenuTree() {
-  return request<Api.SystemManage.MenuTree[]>({
+  return request<Api.MenuManage.MenuTree[]>({
     url: '/sysMenu/getMenuTree',
+    method: 'get'
+  });
+}
+
+/** GetMenuIdsByRoleId */
+export function fetchGetMenuIdsByRoleId(roleId: string | number) {
+  return request<number[]>({
+    url: `/sysMenu/getMenuIdsByRoleId/${roleId}`,
     method: 'get'
   });
 }

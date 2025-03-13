@@ -85,11 +85,13 @@ async function handleSubmit() {
   await validate();
   // request
   if (props.operateType === 'edit') {
-    const result = await fetchUpdateRole(model);
-    if (result) window.$message?.success($t('common.updateSuccess'));
+    const { error } = await fetchUpdateRole(model);
+    if (!error) {
+      window.$message?.success($t('common.updateSuccess'));
+    }
   } else {
-    const result = await fetchInsertRole(model);
-    if (result) window.$message?.success($t('common.addSuccess'));
+    const { error } = await fetchInsertRole(model);
+    if (!error) window.$message?.success($t('common.addSuccess'));
   }
   closeDrawer();
   emit('submitted');

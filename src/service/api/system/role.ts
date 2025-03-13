@@ -35,18 +35,10 @@ export function fetchDeleteRoleByIds(params: any) {
   });
 }
 
-/** GetRoleByRoleId */
-export function fetchGetRoleByRoleId(roleId: string | number) {
-  return request({
-    url: `/sysRoleMenu/getRoleByRoleId/${roleId}`,
-    method: 'get'
-  });
-}
-
 /** UpdateRoleMenu */
 export function fetchUpdateRoleMenu(params: any) {
   return request({
-    url: '/sysRoleMenu/updateRoleMenu',
+    url: '/sysRole/updateRoleMenu',
     method: 'put',
     data: params
   });
@@ -69,6 +61,14 @@ export function fetchGetRoleList(params?: Api.RoleManage.RoleSearchParams) {
 export function fetchGetAllRoles() {
   return request<Api.RoleManage.AllRole[]>({
     url: '/sysRole/getAllRoles',
+    method: 'get'
+  });
+}
+
+/** get permission tree */
+export function fetchPermissionTree() {
+  return request({
+    url: '/sysRole/getPermissionTree',
     method: 'get'
   });
 }
