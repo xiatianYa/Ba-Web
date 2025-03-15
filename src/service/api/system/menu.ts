@@ -19,7 +19,7 @@ export function fetchUpdateMenu(params: any) {
 }
 
 /** Delete */
-export function fetchDeleteMenuById(id: string) {
+export function fetchDeleteMenuById(id: number) {
   return request({
     url: `/sysMenu/remove/${id}`,
     method: 'delete'
@@ -39,7 +39,11 @@ export function fetchDeleteMenuByIds(params: any) {
 export function fetchGetMenuList() {
   return request<Api.MenuManage.MenuList>({
     url: '/sysMenu/page',
-    method: 'get'
+    method: 'get',
+    params: {
+      current: 1,
+      size: 20
+    }
   });
 }
 

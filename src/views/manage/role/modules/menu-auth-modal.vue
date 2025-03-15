@@ -81,8 +81,8 @@ async function handleSubmit() {
     roleId: props.roleId
   };
   // request
-  const result = await fetchUpdateRoleMenu(requetData);
-  if (result) window.$message?.success?.($t('common.modifySuccess'));
+  const { error } = await fetchUpdateRoleMenu(requetData);
+  if (!error) window.$message?.success?.($t('common.modifySuccess'));
   closeModal();
 }
 
@@ -111,6 +111,7 @@ watch(visible, val => {
       :data="tree"
       key-field="id"
       checkable
+      cascade
       expand-on-click
       virtual-scroll
       block-line

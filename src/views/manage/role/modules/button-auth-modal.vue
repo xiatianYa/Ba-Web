@@ -3,7 +3,7 @@ import { computed, h, onMounted, ref, shallowRef, watch } from 'vue';
 import type { TransferRenderSourceList, TreeOption } from 'naive-ui';
 import { NTree } from 'naive-ui';
 import { $t } from '@/locales';
-import { fetchPermissionTree } from '@/service/api';
+import { fetchPermissionByRoleId, fetchPermissionTree, fetchUpdatePermissionByRoleId } from '@/service/api';
 
 defineOptions({
   name: 'ButtonAuthModal'
@@ -56,24 +56,26 @@ async function getAllButtons() {
   }
 }
 
-const checks = ref<Array<string | number>>([]);
+const checks = shallowRef<number[]>([]);
 
 async function getChecks() {
-  // request
-  // const { error, data } = await fetchPermissionByRoleId(props.roleId);
-  // if (!error) {
-  //   checks.value = data;
-  // }
+  // reques
+  const { error, data } = await fetchPermissionByRoleId({
+    roleId: props.roleId
+  });
+  if (!error) {
+    checks.value = data;
+  }
 }
 
 async function handleSubmit() {
   // request
   const params = {
     roleId: props.roleId,
-    permissionList: checks.value
+    permissionIds: checks.value
   };
-  // const result = await fetchUpdatePermissionByRoleId(params);
-  // if (result.data) window.$message?.success?.($t('common.modifySuccess'));
+  const { error } = await fetchUpdatePermissionByRoleId(params);
+  if (!error) window.$message?.success?.($t('common.modifySuccess'));
   closeModal();
 }
 

@@ -72,3 +72,21 @@ export function fetchPermissionTree() {
     method: 'get'
   });
 }
+
+/** get PermissionIds */
+export function fetchPermissionByRoleId(params?: any) {
+  return request({
+    url: '/sysRole/getPermissionIdsByRoleId',
+    method: 'get',
+    params
+  });
+}
+
+/** update PermissionIds */
+export function fetchUpdatePermissionByRoleId(params?: any) {
+  return request({
+    url: '/sysRole/updatePermissionIdsByRoleId',
+    method: 'put',
+    data: params
+  });
+}
