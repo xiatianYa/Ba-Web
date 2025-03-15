@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, h, ref, shallowRef, watch } from 'vue';
+import { computed, h, onMounted, ref, shallowRef, watch } from 'vue';
 import type { TransferRenderSourceList, TreeOption } from 'naive-ui';
 import { NTree } from 'naive-ui';
 import { $t } from '@/locales';
@@ -32,13 +32,27 @@ interface Option {
   children?: Option[];
   disabled?: boolean;
 }
-const tree = shallowRef<Option[]>([]);
+const options = shallowRef<Option[]>([]);
+const treeData = ref<Option[] | undefined>([]);
+
+function flattenTree(list: undefined | Option[]): Option[] {
+  const result: Option[] = [];
+  function flatten(_list: Option[] = []) {
+    _list.forEach(item => {
+      result.push(item);
+      flatten(item.children);
+    });
+  }
+  flatten(list);
+  return result;
+}
 
 async function getAllButtons() {
   // request
   const { error, data } = await fetchPermissionTree();
   if (!error) {
-    tree.value = data;
+    options.value = flattenTree(data);
+    treeData.value = data;
   }
 }
 
@@ -64,17 +78,16 @@ async function handleSubmit() {
 }
 
 const renderSourceList: TransferRenderSourceList = ({ onCheck, pattern }) => {
-  console.log(tree.value);
-  console.log(checks.value);
-
   return h(NTree, {
     style: 'margin: 0 4px;',
     keyField: 'value',
+    labelField: 'label',
+    cascade: true,
     checkable: true,
     selectable: false,
     blockLine: true,
     checkOnClick: true,
-    data: tree.value as unknown as TreeOption[],
+    data: treeData.value as unknown as TreeOption[],
     pattern,
     checkedKeys: checks.value,
     onUpdateCheckedKeys: (checkedKeys: Array<string | number>) => {
@@ -84,7 +97,6 @@ const renderSourceList: TransferRenderSourceList = ({ onCheck, pattern }) => {
 };
 
 function init() {
-  getAllButtons();
   getChecks();
 }
 
@@ -94,11 +106,15 @@ watch(visible, newValue => {
     init();
   }
 });
+
+onMounted(() => {
+  getAllButtons();
+});
 </script>
 
 <template>
   <NModal v-model:show="visible" :title="title" preset="card" class="w-480px">
-    <NTransfer v-model:value="checks" :options="tree" :render-source-list="renderSourceList" source-filterable />
+    <NTransfer v-model:value="checks" :options="options" :render-source-list="renderSourceList" source-filterable />
     <template #footer>
       <NSpace justify="end">
         <NButton size="small" class="mt-16px" @click="closeModal">
