@@ -111,10 +111,9 @@ watch(visible, val => {
       :data="tree"
       key-field="id"
       checkable
-      cascade
-      expand-on-click
-      virtual-scroll
+      selectable
       block-line
+      check-on-click
       class="h-280px"
     />
     <template #footer>

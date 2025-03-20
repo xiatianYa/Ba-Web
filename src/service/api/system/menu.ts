@@ -27,7 +27,7 @@ export function fetchDeleteMenuById(id: number) {
 }
 
 /** Delete */
-export function fetchDeleteMenuByIds(params: any) {
+export function fetchDeleteMenuByIds(params: { ids: any }) {
   return request<Api.Auth.LoginToken>({
     url: '/sysMenu/removeByIds',
     method: 'delete',

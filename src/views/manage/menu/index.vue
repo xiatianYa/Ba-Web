@@ -149,17 +149,17 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
       width: 230,
       render: row => (
         <div class="flex-center justify-end gap-8px">
-          {hasAuth('sys:menu:save') && row.menuType === '1' && (
+          {hasAuth('/sysMenu/save') && row.menuType === '1' && (
             <NButton type="primary" ghost size="small" onClick={() => handleAddChildMenu(row)}>
               {$t('page.manage.menu.addChildMenu')}
             </NButton>
           )}
-          {hasAuth('sys:menu:update') && (
+          {hasAuth('/sysMenu/update') && (
             <NButton type="primary" ghost size="small" onClick={() => handleEdit(row)}>
               {$t('common.edit')}
             </NButton>
           )}
-          {hasAuth('sys:menu:delete') && (
+          {hasAuth('/sysMenu/remove') && (
             <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
               {{
                 default: () => $t('common.confirmDelete'),
@@ -188,14 +188,16 @@ function handleAdd() {
 
 async function handleBatchDelete() {
   // request
-  const reslut: any = await fetchDeleteMenuByIds(checkedRowKeys.value);
-  if (reslut.data) onBatchDeleted();
+  const { error } = await fetchDeleteMenuByIds({
+    ids: checkedRowKeys.value
+  });
+  if (!error) onBatchDeleted();
 }
 
 async function handleDelete(id: number) {
   // request
-  const reslut: any = await fetchDeleteMenuById(id);
-  if (reslut.data) onDeleted();
+  const { error } = await fetchDeleteMenuById(id);
+  if (!error) onDeleted();
 }
 
 /** the edit menu data or the parent menu data when adding a child menu */
@@ -241,8 +243,6 @@ init();
       <TableHeaderOperation
         v-model:checked-row-keys="checkedRowKeys"
         v-model:columns="columnChecks"
-        add-auth="sys:menu:save"
-        delete-auth="sys:menu:delete"
         :disabled-delete="checkedRowKeys.length === 0"
         :loading="loading"
         @add="handleAdd"
