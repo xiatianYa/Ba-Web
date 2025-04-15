@@ -10,6 +10,7 @@ import { getRouteName } from '@/router/elegant/transform';
 import { useAuthStore } from '@/store/modules/auth';
 import { useRouteStore } from '@/store/modules/route';
 import { localStg } from '@/utils/storage';
+import { useDictStore } from '@/store/modules/dict';
 
 /**
  * create route guard
@@ -77,6 +78,7 @@ async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw 
 
   const notFoundRoute: RouteKey = 'not-found';
   const isNotFoundRoute = to.name === notFoundRoute;
+  const dictStore = useDictStore();
 
   // if the constant route is not initialized, then initialize the constant route
   if (!routeStore.isInitConstantRoute) {
@@ -116,6 +118,9 @@ async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw 
 
     return location;
   }
+
+  // initialize the dict item
+  await dictStore.init();
 
   if (!routeStore.isInitAuthRoute) {
     // initialize the auth route

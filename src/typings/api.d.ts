@@ -5,6 +5,11 @@
  */
 declare namespace Api {
   namespace Common {
+    /** common delete params */
+    type DeleteParams = {
+      ids: string | number[];
+    };
+
     /** common params of paginating */
     interface PaginatingCommonParams {
       /** current page number */

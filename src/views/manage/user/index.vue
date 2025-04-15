@@ -65,9 +65,9 @@ const {
         }
 
         const tagMap: Record<Api.UserManage.UserGender, NaiveUI.ThemeColor> = {
-          0: 'default',
-          1: 'primary',
-          2: 'error'
+          1: 'default',
+          2: 'primary',
+          3: 'error'
         };
 
         const label = $t(userGenderRecord[row.userGender]);
@@ -197,7 +197,7 @@ function edit(id: number) {
         @refresh="getData"
       />
       <NDataTable
-        v-model:checked-row-keys="checkedRowKeys"
+        v-model:checked-row-keys="checkedRowKeys as number[]"
         :columns="columns"
         :data="data"
         size="small"

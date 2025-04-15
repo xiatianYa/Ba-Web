@@ -15,7 +15,8 @@ export type TableColumnCheck = {
 };
 
 export type TableDataWithIndex<T> = T & {
-  status: any; index: number
+  status: any;
+  index: number;
 };
 
 export type TransformedData<T> = {

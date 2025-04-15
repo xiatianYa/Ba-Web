@@ -9,11 +9,13 @@ import { localStg } from '@/utils/storage';
 import { $t } from '@/locales';
 import { useRouteStore } from '../route';
 import { useTabStore } from '../tab';
+import { useDictStore } from '../dict';
 import { clearAuthStorage, getToken } from './shared';
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const route = useRoute();
   const routeStore = useRouteStore();
+  const dictStore = useDictStore();
   const tabStore = useTabStore();
   const { toLogin, redirectFromLogin } = useRouterPush(false);
   const { loading: loginLoading, startLoading, endLoading } = useLoading();
@@ -22,6 +24,10 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   const userInfo: Api.Auth.UserInfo = reactive({
     userId: '',
+    userPhone: '',
+    userEmail: '',
+    userGender: '',
+    avatar: '',
     userName: '',
     roles: [],
     buttons: []
@@ -70,6 +76,8 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
       if (pass) {
         await redirectFromLogin(redirect);
+
+        await dictStore.init();
 
         window.$notification?.success({
           title: $t('page.login.common.loginSuccess'),

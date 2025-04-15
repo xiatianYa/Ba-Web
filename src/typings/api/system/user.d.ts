@@ -60,7 +60,7 @@ declare namespace Api {
      * - "1": "male"
      * - "2": "female"
      */
-    type UserGender = '0' | '1' | '2';
+    type UserGender = '1' | '2' | '3';
 
     /** user search params */
     type UserSearchParams = CommonType.RecordNullable<

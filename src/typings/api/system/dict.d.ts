@@ -1,5 +1,28 @@
 declare namespace Api {
   namespace DictManage {
+    /** dict list */
+    type DictPageList = Common.PaginatingQueryRecord<Dict>;
+
+    /** dict search params */
+    type DictSearchParams = CommonType.RecordNullable<
+      Pick<Api.DictManage.Dict, 'name' | 'code'> & Api.Common.CommonSearchParams
+    >;
+
+    /** dict item search params */
+    type DictItemSearchParams = CommonType.RecordNullable<
+      Pick<Api.DictManage.DictItem, 'dictId' | 'value' | 'zhCn' | 'enUs' | 'description'> &
+        Api.Common.CommonSearchParams
+    >;
+
+    /** dict store search params */
+    type DictStoreSearchParams = CommonType.RecordNullable<{ language: string; code?: string }>;
+
+    /** dict item page list */
+    type DictItemPageList = Common.PaginatingQueryRecord<DictItem>;
+
+    /** dict edit model */
+    type DictEdit = Pick<Api.DictManage.Dict, 'name' | 'code' | 'type' | 'sort' | 'description' | 'status'>;
+
     /**
      * dict type
      *
@@ -11,7 +34,7 @@ declare namespace Api {
     /** dict item */
     type DictItem = Common.CommonRecord<{
       /** dict id */
-      dictId: string;
+      dictId: string | number;
       /** dict code */
       dictCode: string;
       /** dict item value */
@@ -45,5 +68,21 @@ declare namespace Api {
       /** dict status */
       status: Common.EnableStatus;
     }>;
+
+    /** dict tree * */
+    type DictTree = Pick<Api.DictManage.Dict, 'id' | 'name' | 'code' | 'type' | 'description' | 'status'>;
+
+    /** dict options */
+    type DictOptions = {
+      label: string;
+      value: string;
+      type: NaiveUI.ThemeColor;
+    };
+
+    /** dict item edit model */
+    type DictItemEdit = Pick<
+      Api.DictManage.DictItem,
+      'value' | 'zhCn' | 'enUs' | 'type' | 'sort' | 'description' | 'status'
+    >;
   }
 }
