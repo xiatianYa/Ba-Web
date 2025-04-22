@@ -712,6 +712,37 @@ declare namespace App {
             };
           };
         };
+        monitor: {
+          logs: {
+            operation: {
+              createUser: string;
+              timestamp: string;
+              form: {
+                createUser: string;
+                timestamp: string;
+              };
+            };
+            file: {
+              userId: string;
+              userName: string;
+              filePath: string;
+              fileUrl: string;
+              fileType: string;
+              fileSize: string;
+              errorMsg: string;
+              status: string;
+              form: {
+                userId: string;
+                userName: string;
+                filePath: string;
+                fileUrl: string;
+                fileType: string;
+                fileSize: string;
+                status: string;
+              };
+            };
+          };
+        };
       };
       form: {
         required: string;

@@ -55,7 +55,7 @@ function createDefaultModel(): Model {
     userPhone: '',
     userEmail: '',
     userRoles: [],
-    status: null
+    status: '1'
   };
 }
 

@@ -188,10 +188,8 @@ function edit(id: number) {
       <TableHeaderOperation
         v-model:columns="columnChecks"
         :delete-all="true"
-        delete-all-auth="sys:user:delete"
         :checked-row-keys="checkedRowKeys"
         :loading="loading"
-        add-auth="sys:user:save"
         @add="handleAdd"
         @delete="handleBatchDelete"
         @refresh="getData"

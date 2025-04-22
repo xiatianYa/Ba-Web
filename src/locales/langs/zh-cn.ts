@@ -167,7 +167,10 @@ const local: App.I18n.Schema = {
     manage_user: '用户管理',
     manage_role: '角色管理',
     manage_menu: '菜单管理',
-    manage_dict: '字典管理'
+    manage_dict: '字典管理',
+    monitor: '监控管理',
+    monitor_logs: '日志管理',
+    monitor_logs_file: '文件日志'
   },
   page: {
     login: {
@@ -472,6 +475,37 @@ const local: App.I18n.Schema = {
           oldPasswordPlaceholder: '请输入旧密码',
           newPasswordPlaceholder: '请输入新密码',
           confirmPasswordPlaceholder: '请输入确认密码'
+        }
+      }
+    },
+    monitor: {
+      logs: {
+        file: {
+          userId: '用户ID',
+          userName: '用户名称',
+          fileUrl: '文件网络路径',
+          filePath: '文件物理路径',
+          fileSize: '文件大小',
+          fileType: '文件类型',
+          errorMsg: '异常信息',
+          status: '操作状态',
+          form: {
+            userId: '请输入用户ID',
+            userName: '请输入用户名称',
+            fileUrl: '请输入文件网络路径',
+            fileSize: '请输入文件大小',
+            fileType: '请选择文件类型',
+            status: '请选择操作状态',
+            filePath: '请输入文件物理路径'
+          }
+        },
+        operation: {
+          createUser: '操作用户',
+          timestamp: '操作时间',
+          form: {
+            createUser: '请输入操作用户',
+            timestamp: '请选择操作时间'
+          }
         }
       }
     }

@@ -250,7 +250,7 @@ init();
         @refresh="getData"
       />
       <NDataTable
-        v-model:checked-row-keys="checkedRowKeys"
+        v-model:checked-row-keys="checkedRowKeys as number[]"
         :columns="columns"
         :data="data"
         size="small"

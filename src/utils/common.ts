@@ -66,3 +66,42 @@ export function toggleHtmlClass(className: string) {
 export function transDeleteParams(record: string | number[]): Api.Common.DeleteParams {
   return { ids: record };
 }
+
+/**
+ * 根据文件名称返回标签
+ *
+ * @param filename
+ * @returns
+ */
+export function getFileTypeByExtension(filename: string): 'file' | 'image' | 'video' {
+  const fileExtension = filename.split('.').pop()?.toLowerCase() ?? '';
+
+  // 定义图片和视频的文件扩展名数组
+  const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp'];
+  const videoExtensions = ['mp4', 'avi', 'mov', 'mkv', 'flv', 'wmv', 'mpeg'];
+
+  // 判断文件类型
+  if (imageExtensions.includes(fileExtension)) {
+    return 'image';
+  } else if (videoExtensions.includes(fileExtension)) {
+    return 'video';
+  }
+  return 'file'; // 默认情况下，将其视为普通文件
+}
+
+/**
+ * 根据文件KB返回相应的类型
+ *
+ * @param fileSize
+ * @returns
+ */
+export function getFileSizeType(fileSize: number) {
+  const units = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  let unitIndex = 0;
+  while (fileSize >= 1024 && unitIndex < units.length - 1) {
+    // eslint-disable-next-line no-param-reassign
+    fileSize /= 1024;
+    unitIndex += 1;
+  }
+  return `${fileSize.toFixed(2)} ${units[unitIndex]}`;
+}

@@ -82,7 +82,7 @@ export function fetchGetDictItemPageList(params?: Api.DictManage.DictItemSearchP
 /** get dict item edit */
 export function fetchGetEditDictItem(id: string | number) {
   return request<Api.DictManage.DictItem>({
-    url: `/sysDict/getInfo/${id}`,
+    url: `/sysDict/getItemInfo/${id}`,
     method: 'get'
   });
 }

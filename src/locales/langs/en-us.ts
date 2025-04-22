@@ -167,7 +167,10 @@ const local: App.I18n.Schema = {
     manage_user: 'Manage User',
     manage_role: 'Manage Role',
     manage_menu: 'Manage Menu',
-    manage_dict: 'Manage Dict'
+    manage_dict: 'Manage Dict',
+    monitor: 'Monitor',
+    monitor_logs: 'Monitor Logs',
+    monitor_logs_file: 'Monitor File Logs'
   },
   page: {
     login: {
@@ -472,6 +475,37 @@ const local: App.I18n.Schema = {
           oldPasswordPlaceholder: 'Please enter old password',
           newPasswordPlaceholder: 'Please enter new password',
           confirmPasswordPlaceholder: 'Please enter confirm password'
+        }
+      }
+    },
+    monitor: {
+      logs: {
+        file: {
+          userId: 'User ID',
+          userName: 'User Name',
+          fileUrl: 'File URL',
+          filePath: 'File Path',
+          fileType: 'File Type',
+          fileSize: 'File Size',
+          errorMsg: 'Error Message',
+          status: 'Status',
+          form: {
+            userId: 'Please enter user ID',
+            userName: 'Please enter user name',
+            fileUrl: 'Please enter file URL',
+            filePath: 'Please enter file path',
+            fileType: 'Please enter file type',
+            fileSize: 'Please enter file size',
+            status: 'Please select status'
+          }
+        },
+        operation: {
+          createUser: 'Operation User',
+          timestamp: 'Operation Time',
+          form: {
+            createUser: 'Please enter operation user',
+            timestamp: 'Please select operation time'
+          }
         }
       }
     }
