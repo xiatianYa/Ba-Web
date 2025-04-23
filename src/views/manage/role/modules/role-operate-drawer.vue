@@ -44,7 +44,7 @@ const title = computed(() => {
   return titles[props.operateType];
 });
 
-type Model = Pick<Api.RoleManage.Role, 'roleName' | 'roleCode' | 'roleDesc' | 'status'>;
+type Model = Pick<Api.RoleManage.Role, 'roleName' | 'roleCode' | 'roleDesc'>;
 
 const model: Model = reactive(createDefaultModel());
 
@@ -52,8 +52,7 @@ function createDefaultModel(): Model {
   return {
     roleName: '',
     roleCode: '',
-    roleDesc: '',
-    status: null
+    roleDesc: ''
   };
 }
 
@@ -61,8 +60,7 @@ type RuleKey = Exclude<keyof Model, 'roleDesc'>;
 
 const rules: Record<RuleKey, App.Global.FormRule> = {
   roleName: defaultRequiredRule,
-  roleCode: defaultRequiredRule,
-  status: defaultRequiredRule
+  roleCode: defaultRequiredRule
 };
 
 const roleId = computed(() => props.rowData?.id || -1);
@@ -114,11 +112,6 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.role.roleCode')" path="roleCode">
           <NInput v-model:value="model.roleCode" :placeholder="$t('page.manage.role.form.roleCode')" />
-        </NFormItem>
-        <NFormItem :label="$t('page.manage.role.roleStatus')" path="status">
-          <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
-          </NRadioGroup>
         </NFormItem>
         <NFormItem :label="$t('page.manage.role.roleDesc')" path="roleDesc">
           <NInput v-model:value="model.roleDesc" :placeholder="$t('page.manage.role.form.roleDesc')" />

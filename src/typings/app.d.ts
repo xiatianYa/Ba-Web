@@ -495,12 +495,10 @@ declare namespace App {
             title: string;
             roleName: string;
             roleCode: string;
-            roleStatus: string;
             roleDesc: string;
             form: {
               roleName: string;
               roleCode: string;
-              roleStatus: string;
               roleDesc: string;
             };
             addRole: string;

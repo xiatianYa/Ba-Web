@@ -261,12 +261,10 @@ const local: App.I18n.Schema = {
         title: 'Role List',
         roleName: 'Role Name',
         roleCode: 'Role Code',
-        roleStatus: 'Role Status',
         roleDesc: 'Role Description',
         form: {
           roleName: 'Please enter role name',
           roleCode: 'Please enter role code',
-          roleStatus: 'Please select role status',
           roleDesc: 'Please enter role description'
         },
         addRole: 'Add Role',
