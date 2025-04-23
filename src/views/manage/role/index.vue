@@ -1,10 +1,9 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { fetchDeleteRoleById, fetchDeleteRoleByIds, fetchGetRoleList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
-import { enableStatusRecord } from '@/constants/business';
 import { useAuth } from '@/hooks/business/auth';
 import RoleOperateDrawer from './modules/role-operate-drawer.vue';
 import RoleSearch from './modules/role-search.vue';
@@ -146,7 +145,7 @@ function edit(id: number) {
         remote
         :row-key="row => row.id"
         :pagination="mobilePagination"
-        class="sm:h-full"
+        class="mt-10px sm:h-full"
       />
       <RoleOperateDrawer
         v-model:visible="drawerVisible"

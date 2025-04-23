@@ -1,12 +1,12 @@
 <script setup lang="tsx">
-import { NButton, NCard, NPopconfirm } from 'naive-ui';
+import { NButton, NCard, NImage, NPopconfirm } from 'naive-ui';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { useDict } from '@/hooks/business/dict';
 import { fetchGetFileLogList, fetchRemoveLogsFile } from '@/service/api';
 import { useAuth } from '@/hooks/business/auth';
-import { getFileSizeType } from '@/utils/common';
+import { getFileSizeType, getFileTypeByExtension } from '@/utils/common';
 import LogsOperationSearch from './modules/operation-search.vue';
 
 defineOptions({
@@ -54,7 +54,29 @@ const { columns, data, loading, getData, getDataByPage, mobilePagination, search
     {
       key: 'fileUrl',
       title: $t('page.monitor.logs.file.fileUrl'),
-      align: 'center'
+      align: 'center',
+      render: row => (
+        <div class="flex-center justify-center gap-8px">
+          {getFileTypeByExtension(row.fileType) === 'image' && <NImage src={row.fileUrl}></NImage>}
+          {getFileTypeByExtension(row.fileType) === 'video' && (
+            <video controls width="640" height="360">
+              <source src={row.fileUrl} />
+              你的浏览器不支持视频播放。
+            </video>
+          )}
+          {getFileTypeByExtension(row.fileType) === 'audio' && (
+            <audio controls>
+              <source src={row.fileUrl} />
+              你的浏览器不支持音频播放。
+            </audio>
+          )}
+          {getFileTypeByExtension(row.fileType) === 'file' && (
+            <a href={row.fileUrl} target="_blank">
+              {row.filePath}
+            </a>
+          )}
+        </div>
+      )
     },
     {
       key: 'fileType',

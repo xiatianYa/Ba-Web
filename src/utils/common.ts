@@ -73,18 +73,16 @@ export function transDeleteParams(record: string | number[]): Api.Common.DeleteP
  * @param filename
  * @returns
  */
-export function getFileTypeByExtension(filename: string): 'file' | 'image' | 'video' {
-  const fileExtension = filename.split('.').pop()?.toLowerCase() ?? '';
-
-  // 定义图片和视频的文件扩展名数组
-  const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp'];
-  const videoExtensions = ['mp4', 'avi', 'mov', 'mkv', 'flv', 'wmv', 'mpeg'];
-
+export function getFileTypeByExtension(fileType: number): 'file' | 'image' | 'video' | 'audio' {
   // 判断文件类型
-  if (imageExtensions.includes(fileExtension)) {
+  if (fileType === 1) {
     return 'image';
-  } else if (videoExtensions.includes(fileExtension)) {
+  } else if (fileType === 2) {
     return 'video';
+  } else if (fileType === 3) {
+    return 'file'; // 默认情况下，将其视为普通文件
+  } else if (fileType === 4) {
+    return 'audio';
   }
   return 'file'; // 默认情况下，将其视为普通文件
 }
