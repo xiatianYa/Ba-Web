@@ -1,10 +1,10 @@
 <script setup lang="tsx">
 import { NButton, NCard, NPopconfirm } from 'naive-ui';
 import { useAppStore } from '@/store/modules/app';
-import { useTable } from '@/hooks/common/table';
+import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { useDict } from '@/hooks/business/dict';
-import { fetchGetFileLogList } from '@/service/api';
+import { fetchGetFileLogList, fetchRemoveLogsFile } from '@/service/api';
 import { useAuth } from '@/hooks/business/auth';
 import { getFileSizeType } from '@/utils/common';
 import LogsOperationSearch from './modules/operation-search.vue';
@@ -18,10 +18,6 @@ const appStore = useAppStore();
 const { dictTag } = useDict();
 
 const { hasAuth } = useAuth();
-
-function handleDelete(id: number) {
-  console.log(id);
-}
 
 const { columns, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetFileLogList,
@@ -109,6 +105,14 @@ const { columns, data, loading, getData, getDataByPage, mobilePagination, search
     }
   ]
 });
+
+const { onDeleted } = useTableOperate(data, getData);
+
+async function handleDelete(id: number) {
+  const { error } = await fetchRemoveLogsFile(id);
+  if (error) return;
+  onDeleted();
+}
 </script>
 
 <template>
