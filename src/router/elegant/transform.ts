@@ -176,7 +176,8 @@ const routeMap: RouteMap = {
   "manage_user": "/manage/user",
   "monitor": "/monitor",
   "monitor_logs": "/monitor/logs",
-  "monitor_logs_file": "/monitor/logs/file"
+  "monitor_logs_file": "/monitor/logs/file",
+  "monitor_logs_operation": "/monitor/logs/operation"
 };
 
 /**

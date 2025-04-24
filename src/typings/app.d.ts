@@ -713,7 +713,19 @@ declare namespace App {
         monitor: {
           logs: {
             operation: {
+              requestId: string;
+              ip: string;
+              ipAddr: string;
+              userAgent: string;
+              requestUri: string;
+              requestMethod: string;
+              contentType: string;
+              operation: string;
+              methodName: string;
+              methodParams: string;
+              useTime: string;
               createUser: string;
+              createTime: string;
               timestamp: string;
               form: {
                 createUser: string;

@@ -3,7 +3,7 @@ import { request } from '@/service/request';
 /** get file log list */
 export function fetchGetFileLogList(params?: Api.Monitor.FileLogSearchParams) {
   return request<Api.Monitor.FileLogList>({
-    url: '/monitor/logsFile/page',
+    url: '/monitor/monLogsFile/page',
     method: 'get',
     params
   });
@@ -11,7 +11,7 @@ export function fetchGetFileLogList(params?: Api.Monitor.FileLogSearchParams) {
 /** remove file log */
 export function fetchRemoveLogsFile(id: number) {
   return request<boolean>({
-    url: `/monitor/logsFile/remove/${id}`,
+    url: `/monitor/monLogsFile/remove/${id}`,
     method: 'delete'
   });
 }

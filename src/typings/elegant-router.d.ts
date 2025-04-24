@@ -31,6 +31,7 @@ declare module "@elegant-router/types" {
     "monitor": "/monitor";
     "monitor_logs": "/monitor/logs";
     "monitor_logs_file": "/monitor/logs/file";
+    "monitor_logs_operation": "/monitor/logs/operation";
   };
 
   /**
@@ -97,6 +98,7 @@ declare module "@elegant-router/types" {
     | "manage_role"
     | "manage_user"
     | "monitor_logs_file"
+    | "monitor_logs_operation"
   >;
 
   /**

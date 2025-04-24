@@ -170,7 +170,8 @@ const local: App.I18n.Schema = {
     manage_dict: '字典管理',
     monitor: '监控管理',
     monitor_logs: '日志管理',
-    monitor_logs_file: '文件日志'
+    monitor_logs_file: '文件日志',
+    monitor_logs_operation: '操作日志'
   },
   page: {
     login: {
@@ -500,6 +501,18 @@ const local: App.I18n.Schema = {
         operation: {
           createUser: '操作用户',
           timestamp: '操作时间',
+          requestId: '请求 ID',
+          ip: '操作 IP',
+          ipAddr: 'IP 所属地',
+          userAgent: 'User-Agent',
+          requestUri: '请求 URI',
+          requestMethod: '请求方式',
+          contentType: '请求类型',
+          methodName: '操作方法',
+          operation: '操作方法说明',
+          methodParams: '操作参数',
+          useTime: '耗时(ms)',
+          createTime: '操作时间',
           form: {
             createUser: '请输入操作用户',
             timestamp: '请选择操作时间'

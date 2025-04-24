@@ -94,30 +94,34 @@ declare namespace Api {
 
     /** OperationLog */
     type OperationLog = Common.CommonRecord<{
-      /** request id */
-      requestId: number;
+      /** id */
+      id: number;
       /** ip */
       ip: string;
       /** ip addr */
       ipAddr: string;
+      /** user id */
+      userId: number;
+      /** user name */
+      userName: string;
       /** iser agent */
       userAgent: string;
       /** request uri */
       requestUri: string;
       /** request method */
+      requestPath: string;
+      /** request method */
       requestMethod: string;
-      /** content Type */
-      contentType: string;
-      /** operation message */
-      operation: string;
-      /** method name */
-      methodName: string;
       /** method params */
       methodParams: string;
       /** use time */
       useTime: number;
       /** createUser */
       createUser: string;
+      /** 开始时间 */
+      startTime: any;
+      /** 结束时间 */
+      endTime: any;
     }>;
 
     /** scheduler log */

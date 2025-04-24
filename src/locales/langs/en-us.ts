@@ -170,7 +170,8 @@ const local: App.I18n.Schema = {
     manage_dict: 'Manage Dict',
     monitor: 'Monitor',
     monitor_logs: 'Monitor Logs',
-    monitor_logs_file: 'Monitor File Logs'
+    monitor_logs_file: 'Monitor File Logs',
+    monitor_logs_operation: '操作日志'
   },
   page: {
     login: {
@@ -500,6 +501,18 @@ const local: App.I18n.Schema = {
         operation: {
           createUser: 'Operation User',
           timestamp: 'Operation Time',
+          requestId: 'Request ID',
+          ip: 'Operation IP',
+          ipAddr: 'IP Location',
+          userAgent: 'User-Agent',
+          requestUri: 'Request URI',
+          requestMethod: 'Request Method',
+          contentType: 'Content Type',
+          methodName: 'Method Name',
+          operation: 'Operation',
+          methodParams: 'Method Params',
+          useTime: 'Use Time(ms)',
+          createTime: 'Operation Time',
           form: {
             createUser: 'Please enter operation user',
             timestamp: 'Please select operation time'
