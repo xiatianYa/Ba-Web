@@ -5,7 +5,7 @@ import { request } from '@/service/request';
 /** get operation log list */
 export function fetchGetOperationLogList(params?: Api.Monitor.OperationLogSearchParams) {
   return request<Api.Monitor.OperationLogList>({
-    url: '/monitor/monLogsOperation/page',
+    url: '/monLogsOperation/page',
     method: 'get',
     params
   });
